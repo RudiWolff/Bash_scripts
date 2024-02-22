@@ -53,7 +53,10 @@ read -p "Vols fer altre comprovació? [s, o cualquier otra tecla] " new
 
 if [ "$new" == s ]
 then
-	bash /home/rwolff/Documentos/M01B2_EAC5_scripts/arxiu.sh	
+	echo $0
+	echo $(basename $0)
+	echo $(dirname $0)
+	echo $PWD
 else
 	echo -e "\n--------\n| Adèu |\n--------\n"
 fi
