@@ -53,7 +53,10 @@ read -p "Vols fer altre comprovació? [s, o cualquier otra tecla] " new
 
 if [ "$new" == s ]
 then
-	bash /home/rwolff/Documentos/M01B2_EAC5_scripts/arxiu.sh	
+	script_name=$(basename $0)
+	path_abs=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+	echo "$path_abs/$script_name"
+	echo $pwd
 else
 	echo -e "\n--------\n| Adèu |\n--------\n"
 fi
