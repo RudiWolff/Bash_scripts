@@ -53,10 +53,10 @@ read -p "Vols fer altre comprovació? [s, o cualquier otra tecla] " new
 
 if [ "$new" == s ]
 then
-	script_name=$(basename $0)
-	path_abs=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
-	echo "$path_abs/$script_name"
-	echo $pwd
+	echo $0
+	echo $(basename $0)
+	echo $(dirname $0)
+	echo $PWD
 else
 	echo -e "\n--------\n| Adèu |\n--------\n"
 fi
