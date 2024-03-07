@@ -1,0 +1,3 @@
+pere,pou prat,18,inf,si,secret
+anna,mas moreu,20,inf,si,s3cr3t
+marta,pou prat,25,adm,no,nonis
