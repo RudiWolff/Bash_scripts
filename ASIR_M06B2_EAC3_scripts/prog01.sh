@@ -45,17 +45,17 @@ fi
 
 # Generació login y contrasenya
 codiReturn=0
+old_IFS=$IFS;IFS=,
 # bucle while llegeix el fitxer línia per línia
-while read line
+while read -r nom cognoms edat departament estat password 
 do
     # Extracció de les partes necesarias per a la creació del nou usuari 
     # i su contrasenya
-    primeraLletra=$(head -c 1 <<< $line)
-    cognom1=$(tr ', ' ':' <<< $line | cut -d: -f2)
-    fullname=$(cut -d, -f1,2 <<< $line | tr ',' ' ')
+    fullname="$nom $cognoms"   
+    primeraLletra=$(head -c 1 <<< $nom)
+    cognom1=$(cut -d' ' -f1 <<< $cognoms)
     login=$primeraLletra$cognom1   
-    password=$(cut -d, -f6  <<< $line)
-    
+
     # creació del nou usuari
     useradd -s /bin/bash -m -d /home/$login $login 2> /dev/null
     chk_useradd=$(echo $?)
@@ -75,7 +75,7 @@ do
         echo $login
     fi
 done < $2
-
+IFS=$old_IFS
 return $codiReturn
 }
 
@@ -95,7 +95,7 @@ if [ ! $(grep "^$2:" /etc/passwd) ];then
     echo >&2 "USAGE: $(basename $0) grup login gid"
     return $ERR_GRUP_EXT
 fi
-
+    
 # La funció valida que el segon argument rebut és un grup vàlid del sistema.
 if [ ! $(grep ":$3:" /etc/group) ];then
     echo >&2 "ERROR: grup $3 inexistent"
