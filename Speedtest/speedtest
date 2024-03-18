@@ -1,0 +1,6 @@
+#!/bin/bash
+# Das Skript 'speedtest' nutzt das Programm selben Namens, um die Schnelligkeit des Internets festzustellen und loggt Upload- und Download-Geschwindigkeiten.
+# Programm ohne Datei-Endung wird durch einen stündlichen Cronjob aktiviert. Dafür wird es in /etc/cron.hourly abgelegt.
+/usr/bin/speedtest | tee /var/log/Arbeit/speedtest.tmp
+(echo -e "\n==> hourly cron job";date;tail -n3 /var/log/Arbeit/speedtest.tmp | sed -n '1p;3p') | tee -a /var/log/Arbeit/speedtest.log
+rm /var/log/Arbeit/speedtest.tmp
