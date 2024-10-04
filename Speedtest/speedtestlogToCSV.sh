@@ -8,11 +8,11 @@
 # in einer Grafik zu veranschaulichen.
 
 # Prüfung auf Argument
-#if [ #$ -ne 1 ]
-#then
-#    echo "Das Skript braucht eine Datei als Eingabe."
-#    exit 1
-#fi
+if [ $# -ne 1 ]
+then
+    echo "Das Skript braucht eine Datei als Eingabe (z.B. /var/log/Arbeit/speedtest.log)."
+    exit 1
+fi
 
 # Entfernt alle Zeilenumbrüche
 tr -d '\n' < $1 > aux.file
